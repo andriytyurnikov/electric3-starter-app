@@ -6,7 +6,7 @@
 (e/defn Main [ring-request]
   (e/client
     (binding [dom/node js/document.body] ; DOM nodes will mount under this one
-      (dom/div (dom/props {:class "container mx-auto"}) ; mandatory wrapper div to ensure node ordering - https://github.com/hyperfiddle/electric/issues/74
+      (dom/div (dom/props {:class "container mx-auto prose"}) ; mandatory wrapper div to ensure node ordering - https://github.com/hyperfiddle/electric/issues/74
         (TwoClocks)))))
 
 (defn electric-boot [ring-request]
