@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import httpProxy from "http-proxy";
+import tailwindcss from "@tailwindcss/vite";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -50,6 +51,7 @@ export default defineConfig({
   },
 
   plugins: [
+    tailwindcss(),
     // Rewrite /electric_starter_app/* requests to /* since Vite's root
     // is already resources/public/electric_starter_app/. shadow-cljs uses
     // absolute paths like /electric_starter_app/js/cljs-runtime/foo.js

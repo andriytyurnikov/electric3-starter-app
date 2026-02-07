@@ -98,6 +98,5 @@ shadow-cljs must compile `js/main.js` before the browser can load the app. With 
 
 ## Next Steps
 
-- Add Tailwind CSS via PostCSS plugin
 - Explore disabling shadow-cljs CSS watching to avoid double reloads
 - Consider Vite build step for production CSS optimization
