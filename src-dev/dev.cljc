@@ -36,7 +36,16 @@
                     :ws-idle-timeout (* 60 1000)          ; 60 seconds in milliseconds
                     :ws-max-binary-size (* 100 1024 1024) ; 100MB - for demo
                     :ws-max-text-size (* 100 1024 1024)}))  ; 100M - for demo.
-     (log/info "👉 http://0.0.0.0:8080")))
+     (log/info "👉 http://0.0.0.0:8080")
+
+     (def vite-process
+       (-> (ProcessBuilder. ["npx" "vite"])
+         (.directory (java.io.File. (System/getProperty "user.dir")))
+         (.inheritIO)
+         (.start)))
+     (.addShutdownHook (Runtime/getRuntime)
+       (Thread. (fn [] (when (.isAlive vite-process) (.destroy vite-process)))))
+     (log/info "👉 http://localhost:5173 (Vite)")))
 
 (declare browser-process)
 #?(:cljs ; client entrypoint
@@ -52,4 +61,5 @@
 (comment
   (shadow-cljs-compiler-server/stop!)
   (.stop server) ; stop jetty server
+  (.destroy vite-process) ; stop vite dev server
   )

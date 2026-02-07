@@ -54,23 +54,34 @@ shadow-cljs remains inside the Clojure JVM (Electric's single-JVM requirement). 
 
 ## How to Use
 
-### Two-Terminal Dev Workflow
+### Single-Command Startup
 
 ```bash
-# Terminal 1 — Start Clojure JVM (must start first)
 clojure -A:dev -X dev/-main
-# Wait for shadow-cljs to finish compiling (js/main.js must exist)
-
-# Terminal 2 — Start Vite
-npm run dev
 ```
+
+This starts shadow-cljs, Jetty, and Vite in one terminal. Vite logs appear alongside Clojure logs.
 
 - **`http://localhost:8080`** — traditional flow, unchanged
 - **`http://localhost:5173`** — Vite-served flow with PostCSS pipeline
 
-### Startup Order Matters
+Ctrl-C kills both Jetty and Vite (via JVM shutdown hook).
 
-shadow-cljs must compile `js/main.js` before Vite can serve it. Always start the Clojure JVM first and wait for compilation to finish.
+### Manual Alternative
+
+You can still run Vite separately if preferred:
+
+```bash
+# Terminal 1 — Clojure JVM
+clojure -A:dev -X dev/-main
+
+# Terminal 2 — Vite (after shadow-cljs compiles)
+npm run dev
+```
+
+### Startup Order
+
+shadow-cljs must compile `js/main.js` before the browser can load the app. With single-command startup, Vite starts immediately alongside shadow-cljs — the browser will show a blank page until compilation finishes, same as `localhost:8080`.
 
 ## Achievements
 
@@ -82,7 +93,6 @@ shadow-cljs must compile `js/main.js` before Vite can serve it. Always start the
 
 ## Known Limitations
 
-- **Startup dependency** — Clojure JVM must start and compile before Vite can serve JS
 - **Double CSS watching** — Both shadow-cljs `:watch-dir` and Vite watch CSS files; harmless but redundant (can disable shadow-cljs CSS watching later)
 - **Dev-only** — This integration is for the dev workflow only; production builds still use the existing `clj -X:build:prod` pipeline
 
