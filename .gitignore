@@ -14,6 +14,7 @@ node_modules
 /target
 /resources/public/electric_starter_app/dist
 .DS_Store
+/src-generated
 /.dir-locals.el
 CLAUDE.md
 .claude

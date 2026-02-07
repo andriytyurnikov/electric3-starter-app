@@ -3,7 +3,7 @@
            org.clojure/clojurescript      {:mvn/version "1.11.121"}
            ring/ring                      {:mvn/version "1.15.3"} ; to serve the app
            ch.qos.logback/logback-classic {:mvn/version "1.4.14"}}
- :paths   ["src" "resources"]
+ :paths   ["src" "src-generated" "resources"]
  :aliases {:dev {:extra-paths ["src-dev"] :extra-deps  {thheller/shadow-cljs {:mvn/version "2.26.2"}}}
            :prod {:extra-paths ["src-prod"]}
            :build ; use `clj -X:prod:build build-client`, NOT -T!
