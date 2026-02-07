@@ -8,6 +8,7 @@ The existing shadow-cljs + Ring/Jetty dev stack handles ClojureScript compilatio
 - **A path toward Tailwind CSS** and other PostCSS plugins without touching the Clojure build
 - **Fast asset serving** in development via native ESM and on-demand transforms
 - **A foundation for future frontend tooling** (CSS modules, asset optimization, etc.)
+- **Better JS ecosystem interop** — Electric supports standard ClojureScript JS interop (`js/`, `.method`) inside `e/client` blocks. Vite makes it straightforward to pull in npm packages and JS libraries, bridging the gap between Electric's reactive model and the broader JavaScript ecosystem
 
 ## What Was Done
 
