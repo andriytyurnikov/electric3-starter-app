@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build:css": "vite build"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "http-proxy": "^1.18.1",
+    "postcss": "^8.5.3",
+    "vite": "^6.2.0"
+  }
+}
